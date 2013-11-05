@@ -99,6 +99,17 @@
 			<artifactId>liferay-faces-alloy</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.deltaspike.core</groupId>
+			<artifactId>deltaspike-core-api</artifactId>
+			<version>0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.deltaspike.core</groupId>
+			<artifactId>deltaspike-core-impl</artifactId>
+			<version>0.5</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 </project>

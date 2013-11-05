@@ -20,11 +20,14 @@ import javax.annotation.PostConstruct;
 import javax.el.ELResolver;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UICommand;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.portlet.ActionResponse;
+import javax.xml.namespace.QName;
 
 import com.liferay.faces.bridge.event.FileUploadEvent;
 import com.liferay.faces.bridge.model.UploadedFile;
@@ -160,6 +163,8 @@ public class ApplicantBackingBean implements Serializable {
 			}
 		}
 
+		sendApplicationSubmissionEvent(applicantModelBean.getFirstName(), applicantModelBean.getLastName());
+		
 		// Delete the uploaded files.
 		try {
 			List<UploadedFile> uploadedFiles = applicantModelBean.getUploadedFiles();
@@ -187,4 +192,12 @@ public class ApplicantBackingBean implements Serializable {
 		}
 	}
 
+	private static void sendApplicationSubmissionEvent(String firstName, String lastName)
+	{
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        ActionResponse actionResponse = (ActionResponse) externalContext.getResponse();
+        actionResponse.setEvent(QNAME_EVENT, firstName + " " + lastName);
+	}
+	
+	public static final QName QNAME_EVENT = new QName("http://draexlmaier.de/events", "applicationSubmission");
 }
