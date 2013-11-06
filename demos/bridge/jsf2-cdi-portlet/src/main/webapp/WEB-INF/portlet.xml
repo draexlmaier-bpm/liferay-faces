@@ -62,7 +62,7 @@
 		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
 		<init-param>
 			<name>javax.portlet.faces.defaultViewId.view</name>
-			<value>/views/receivingPortletViewMode.xhtml.xhtml</value>
+			<value>/views/receivingPortletViewMode.xhtml</value>
 		</init-param>
 		<init-param>
 			<name>javax.portlet.faces.bridgeEventHandler</name>

@@ -27,6 +27,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.portlet.ActionResponse;
+import javax.portlet.ResourceResponse;
 import javax.xml.namespace.QName;
 
 import com.liferay.faces.bridge.event.FileUploadEvent;
@@ -143,7 +144,7 @@ public class ApplicantBackingBean implements Serializable {
 				elExpression);
 	}
 
-	public String submit() {
+	public void submit() {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("firstName=" + applicantModelBean.getFirstName());
@@ -179,16 +180,16 @@ public class ApplicantBackingBean implements Serializable {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.getExternalContext().getFlash().put("firstName", applicantModelBean.getFirstName());
 
-			applicantModelBean.clearProperties();
+//			applicantModelBean.clearProperties();
 
-			return "success";
+//			return "success";
 
 		}
 		catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			FacesMessageUtil.addGlobalUnexpectedErrorMessage(FacesContext.getCurrentInstance());
 
-			return "failure";
+//			return "failure";
 		}
 	}
 
