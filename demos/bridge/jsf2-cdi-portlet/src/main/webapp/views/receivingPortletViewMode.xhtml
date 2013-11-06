@@ -6,6 +6,6 @@
 	<h:body styleClass="jsf2-portlet ltr">
 		<h:outputText value="#{applicationSubmissionBean.applicant}" />
 		<hr />
-		<h:commandButton action="#{applicationSubmissionBean.acknowledge()}" value="Acknowledged!" />
+		<h:commandButton actionListener="#{applicationSubmissionBean.acknowledge()}" value="Acknowledged!" />
 	</h:body>
 </f:view>
