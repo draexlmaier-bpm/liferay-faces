@@ -47,9 +47,6 @@
 		<filter-name>CDIPortletFilter</filter-name>
 		<portlet-name>bookings</portlet-name>
 	</filter-mapping>
-	<listener>
-		<listener-class>com.liferay.cdi.portlet.bridge.CDIContextListener</listener-class>
-	</listener>
 	<event-definition>
 		<qname xmlns:x="http://liferay.com/events">x:ipc.customerEdited</qname>
 		<value-type>com.liferay.faces.demos.dto.Customer</value-type>
