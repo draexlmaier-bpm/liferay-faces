@@ -17,10 +17,16 @@ import java.io.Serializable;
 
 import javax.el.ELContext;
 import javax.el.ValueExpression;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.inject.Instance;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.portlet.Event;
 import javax.portlet.faces.BridgeEventHandler;
 import javax.portlet.faces.event.EventNavigationResult;
+
+import org.apache.deltaspike.core.api.provider.BeanProvider;
 
 import com.liferay.faces.bridge.event.EventPayloadWrapper;
 import com.liferay.faces.demos.bean.BookingsModelBean;
@@ -37,6 +43,17 @@ public class CustomerSelectedEventHandler implements BridgeEventHandler {
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(CustomerSelectedEventHandler.class);
 
+	@Inject
+	private Instance<Conversation> conversationInstance;
+	
+	@Inject @ConversationScoped
+	private Instance<BookingsModelBean> bookingsModelInstance;
+	
+	public CustomerSelectedEventHandler()
+	{
+	    BeanProvider.injectFields(this);
+	}
+	
 	public EventNavigationResult handleEvent(FacesContext facesContext, Event event) {
 		EventNavigationResult eventNavigationResult = null;
 		String eventQName = event.getQName().toString();
@@ -51,6 +68,9 @@ public class CustomerSelectedEventHandler implements BridgeEventHandler {
 			}
 
 			Customer customer = (Customer) value;
+
+            conversationInstance.get().begin();
+			
 			BookingsModelBean bookingsModelBean = getBookingsModelBean(facesContext);
 			bookingsModelBean.setCustomer(customer);
 
@@ -65,11 +85,6 @@ public class CustomerSelectedEventHandler implements BridgeEventHandler {
 	}
 
 	protected BookingsModelBean getBookingsModelBean(FacesContext facesContext) {
-		String elExpression = "#{bookingsModelBean}";
-		ELContext elContext = facesContext.getELContext();
-		ValueExpression valueExpression = facesContext.getApplication().getExpressionFactory().createValueExpression(
-				elContext, elExpression, BookingsModelBean.class);
-
-		return (BookingsModelBean) valueExpression.getValue(elContext);
+		return bookingsModelInstance.get();
 	}
 }

@@ -35,6 +35,21 @@
 			<qname xmlns:x="http://liferay.com/events">x:ipc.customerEdited</qname>
 		</supported-publishing-event>
 	</portlet>
+	<filter>
+		<filter-name>CDIPortletFilter</filter-name>
+		<filter-class>com.liferay.faces.demos.filter.FixedCDIPortletFilter</filter-class>
+		<lifecycle>ACTION_PHASE</lifecycle>
+		<lifecycle>RENDER_PHASE</lifecycle>
+		<lifecycle>RESOURCE_PHASE</lifecycle>
+		<lifecycle>EVENT_PHASE</lifecycle>
+	</filter>
+	<filter-mapping>
+		<filter-name>CDIPortletFilter</filter-name>
+		<portlet-name>bookings</portlet-name>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.liferay.cdi.portlet.bridge.CDIContextListener</listener-class>
+	</listener>
 	<event-definition>
 		<qname xmlns:x="http://liferay.com/events">x:ipc.customerEdited</qname>
 		<value-type>com.liferay.faces.demos.dto.Customer</value-type>

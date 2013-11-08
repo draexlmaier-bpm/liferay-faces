@@ -18,10 +18,12 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
 import com.liferay.faces.demos.dto.Booking;
 import com.liferay.faces.demos.dto.Customer;
@@ -44,8 +46,8 @@ import com.liferay.faces.util.logging.LoggerFactory;
  *
  * @author  Neil Griffin
  */
-@SessionScoped
-@ManagedBean(name = "bookingsModelBean")
+@ConversationScoped
+@Named("bookingsModelBean")
 public class BookingsModelBean implements Serializable {
 
 	// serialVersionUID
