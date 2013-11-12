@@ -56,10 +56,12 @@
 			<qname xmlns:drx="http://draexlmaier.de/events">drx:applicationSubmission</qname>
 		</supported-publishing-event>
 	</portlet>
+	
+	
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>JSF2-CDI-Receive</display-name>
-		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<portlet-class>com.liferay.faces.demos.portlet.JSDF2CDIReceivePortlet</portlet-class>
 		<init-param>
 			<name>javax.portlet.faces.defaultViewId.view</name>
 			<value>/views/receivingPortletViewMode.xhtml</value>
